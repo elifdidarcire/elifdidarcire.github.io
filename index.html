@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elif Didar Cire — Yönetim Bilişim Sistemleri & Dijital Ürün Portfolyosu</title>
+    
+    <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        paper: '#F7F4EE',
+                        paperDark: '#EFECE3',
+                        ink: '#181816',
+                        inkMuted: '#57564F',
+                        terracotta: '#D94E28',
+                        terracottaDark: '#B83D1B',
+                        sage: '#3B5249',
+                        sageLight: '#E5ECE9',
+                        borderLine: '#DED9CE'
+                    },
+                    boxShadow: {
+                        editorial: '6px 6px 0px 0px #181816',
+                        editorialSm: '3px 3px 0px 0px #181816',
+                        editorialTerracotta: '6px 6px 0px 0px #D94E28',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F4EE;
+            color: #181816;
+            background-image: radial-gradient(#DED9CE 0.75px, transparent 0.75px);
+            background-size: 24px 24px;
+        }
+
+        /* Cam Efektli Üst Bar */
+        .glass-header {
+            background: rgba(247, 244, 238, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        /* Özel Kaydırma Çubuğu */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F4EE;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5BFB2;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D94E28;
+        }
+
+        /* Aktif Sekme Göstergesi */
+        .nav-tab.active {
+            background-color: #181816;
+            color: #F7F4EE;
+        }
+
+        /* Editorial Kart Geçişi */
+        .editorial-card {
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .editorial-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px 0px #181816;
+        }
+
+        /* Yazdırma / PDF CV Çıktı Modu */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 1.2cm;
+            }
+            body {
+                background: #FFFFFF !important;
+                background-image: none !important;
+                color: #181816 !important;
+                font-size: 10.5pt !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-block {
+                display: block !important;
+            }
+            section {
+                display: block !important;
+                padding-top: 12px !important;
+                padding-bottom: 12px !important;
+                page-break-inside: avoid;
+                border: none !important;
+            }
+            .editorial-card {
+                box-shadow: none !important;
+                transform: none !important;
+                border: 1px solid #DED9CE !important;
+                background: #FFFFFF !important;
+            }
+            .gallery-grid {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- Üst Cam Efektli Navigasyon -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-borderLine no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
+                
+                <!-- Karakteristik Monogram & İsim -->
+                <a href="#hakkimda" onclick="setActiveTab('all')" class="flex items-center gap-3 group shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-ink text-paper flex items-center justify-center font-serif italic text-xl border border-ink group-hover:bg-terracotta group-hover:border-terracotta transition-colors">
+                        Ed.
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-serif text-2xl tracking-tight text-ink block leading-none">Elif Didar Cire</span>
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-inkMuted">YBS • İş Analizi & Ürün</span>
+                    </div>
+                </a>
+
+                <!-- Ana Sekme Navigasyonu (Masaüstü) -->
+                <nav class="hidden lg:flex items-center gap-1 bg-paperDark/90 p-1.5 rounded-2xl border border-borderLine" aria-label="Ana Menü">
+                    <button onclick="navigateTab('all')" data-tab="all" class="nav-tab active px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all">
+                        Tümü
+                    </button>
+                    <button onclick="navigateTab('hakkimda')" data-tab="hakkimda" class="nav-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold text-inkMuted hover:text-ink transition-all">
+                        Hakkımda
+                    </button>
+                    <button onclick="navigateTab('deneyim')" data-tab="deneyim" class="nav-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold text-inkMuted hover:text-ink transition-all">
+                        Deneyim & Eğitim
+                    </button>
+                    <button onclick="navigateTab('etkinlikler')" data-tab="etkinlikler" class="nav-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold text-inkMuted hover:text-ink transition-all">
+                        Etkinlikler
+                    </button>
+                    <button onclick="navigateTab('projeler')" data-tab="projeler" class="nav-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold text-inkMuted hover:text-ink transition-all">
+                        Projeler
+                    </button>
+                    <button onclick="navigateTab('iletisim')" data-tab="iletisim" class="nav-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold text-inkMuted hover:text-ink transition-all">
+                        İletişim
+                    </button>
+                </nav>
+
+                <!-- Sağ Aksiyon Butonları -->
+                <div class="flex items-center gap-2 shrink-0">
+                    <!-- Yerel Klasör Bağlama (hepsi/) -->
+                    <label for="folder-loader" title="ZIP'ten çıkardığınız 'hepsi' klasörünü seçerek tüm fotoğrafları ve PDF'leri canlı yükleyin" class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-medium bg-sageLight text-sage border border-sage/30 hover:bg-sage hover:text-white transition-all">
+                        <i data-lucide="folder-open" class="w-3.5 h-3.5"></i>
+                        <span id="folder-btn-text" class="hidden sm:inline">Klasörü Bağla (hepsi/)</span>
+                        <span class="sm:hidden">Klasör</span>
+                    </label>
+                    <input type="file" id="folder-loader" webkitdirectory directory multiple class="hidden" onchange="handleFolderSelect(event)">
+
+                    <!-- CV Yazdır / İndir -->
+                    <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-terracotta text-white border border-ink shadow-editorialSm hover:bg-terracottaDark transition-all">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                        <span>CV İndir / Yazdır</span>
+                    </button>
+
+                    <!-- Mobil Menü Aç/Kapa -->
+                    <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl border border-borderLine bg-paper text-ink hover:bg-paperDark" aria-label="Menü">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil Sekme Menüsü -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-borderLine bg-paper px-4 py-3 space-y-1.5 shadow-lg">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                <button onclick="navigateTab('all')" data-tab="all" class="nav-tab active px-3 py-2.5 rounded-xl text-xs font-semibold text-left">Tümü (Akış)</button>
+                <button onclick="navigateTab('hakkimda')" data-tab="hakkimda" class="nav-tab px-3 py-2.5 rounded-xl text-xs font-semibold text-left text-inkMuted">Hakkımda</button>
+                <button onclick="navigateTab('deneyim')" data-tab="deneyim" class="nav-tab px-3 py-2.5 rounded-xl text-xs font-semibold text-left text-inkMuted">Deneyim & Eğitim</button>
+                <button onclick="navigateTab('etkinlikler')" data-tab="etkinlikler" class="nav-tab px-3 py-2.5 rounded-xl text-xs font-semibold text-left text-inkMuted">Etkinlikler</button>
+                <button onclick="navigateTab('projeler')" data-tab="projeler" class="nav-tab px-3 py-2.5 rounded-xl text-xs font-semibold text-left text-inkMuted">Projeler</button>
+                <button onclick="navigateTab('iletisim')" data-tab="iletisim" class="nav-tab px-3 py-2.5 rounded-xl text-xs font-semibold text-left text-inkMuted">İletişim</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Durum Bildirim Çubuğu (Klasör Bağlandığında Görünür) -->
+    <div id="folder-status-banner" class="hidden fixed bottom-5 right-5 z-50 max-w-sm bg-ink text-paper px-4 py-3 rounded-2xl border border-terracotta shadow-editorialTerracotta flex items-center gap-3 no-print">
+        <div class="w-8 h-8 rounded-full bg-sage flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+        </div>
+        <div class="text-xs">
+            <p class="font-semibold text-white" id="folder-status-title">Klasör Eşleştirildi!</p>
+            <p class="text-paper/75 font-mono text-[11px]" id="folder-status-desc">22 fotoğraf ve 2 PDF aktif edildi.</p>
+        </div>
+        <button onclick="document.getElementById('folder-status-banner').classList.add('hidden')" class="text-paper/60 hover:text-white ml-auto">
+            <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+    </div>
+
+    <!-- Ana İçerik Konteyneri -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-20 space-y-16 sm:space-y-24">
+
+        <!-- =========================================================
+             BÖLÜM 1: HAKKIMDA & HERO (EDITORIAL KİMLİK KARTI)
+             ========================================================= -->
+        <section id="hakkimda" data-section="hakkimda" class="scroll-mt-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                
+                <!-- Sol Kolon: Başlık, Özet ve Odak Alanları (7 Kolon) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl text-ink leading-[1.03] tracking-tight">
+                        Elif Didar <span class="italic text-terracotta">Cire.</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl font-medium text-ink/90 leading-relaxed">
+                        Analitik düşünme, iş analizi ve dijital ürün geliştirme ekseninde; veriyi anlamlı süreçlere, fikirleri ise kullanıcı odaklı deneyimlere dönüştürüyorum.
+                    </p>
+
+                    <div class="bg-white/75 rounded-2xl p-6 border border-ink/15 space-y-4">
+                        <h2 class="font-mono text-xs uppercase tracking-widest text-terracotta font-semibold flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-4 h-4"></i>
+                            Profil & Yaklaşım
+                        </h2>
+                        <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                            Yönetim Bilişim Sistemleri 4. sınıf öğrencisiyim. Analitik düşünmeye, araştırmaya ve yeni şeyler öğrenmeye önem veriyorum. Üniversite hayatım boyunca gerçekleştirdiğim akademik projeler ve öğrenci topluluğundaki görevlerim sayesinde <strong>ekip çalışması, iletişim, planlama, organizasyon ve problem çözme</strong> alanlarında kendimi geliştirdim.
+                        </p>
+                        <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                            Özellikle <strong>iş analizi, süreç ve ürün geliştirme, teknoloji ve dijitalleşme</strong> alanlarına ilgi duyuyorum. Öğrendiklerimi gerçek projelerde uygulayabileceğim, farklı disiplinlerle birlikte çalışarak kendimi geliştirebileceğim ve bulunduğum ekibe katkı sağlayabileceğim fırsatlara önem veriyorum.
+                        </p>
+                    </div>
+
+                    <!-- Hızlı İletişim & Aksiyon Çipleri -->
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <a href="mailto:cireelifdidar@gmail.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-ink text-paper text-xs font-mono hover:bg-terracotta transition-colors">
+                            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                            cireelifdidar@gmail.com
+                        </a>
+                        <a href="tel:+905079100657" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-ink border border-ink/20 text-xs font-mono hover:border-ink transition-colors">
+                            <i data-lucide="phone" class="w-3.5 h-3.5 text-terracotta"></i>
+                            0507 910 06 57
+                        </a>
+                        <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paperDark text-inkMuted border border-borderLine text-xs font-mono">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sage"></i>
+                            İzmir / Buca
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Sağ Kolon: Profil Fotoğrafı Kartı (5 Kolon) -->
+                <div class="lg:col-span-5">
+                    <div class="editorial-card bg-white rounded-3xl p-4 sm:p-5 border-2 border-ink shadow-editorial">
+                        <!-- Fotoğraf Çerçevesi -->
+                        <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-paperDark border border-borderLine group">
+                            <img 
+                                id="profile-photo-img"
+                                src="hepsi/profilfotoğrafı.jpeg" 
+                                data-local-path="hepsi/profilfotoğrafı.jpeg"
+                                alt="Elif Didar Cire Profil Fotoğrafı" 
+                                class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                                onerror="handleImageFallback(this, 'profile')"
+                            >
+                            <!-- Fotoğraf Bulunamazsa Görünecek Editorial Yer Tutucu -->
+                            <div id="profile-placeholder" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-paper to-paperDark">
+                                <div class="w-20 h-20 rounded-2xl bg-ink text-paper font-serif italic text-4xl flex items-center justify-center mb-4 shadow-editorialSm">
+                                    Ed.
+                                </div>
+                                <p class="font-serif text-2xl text-ink mb-1">Elif Didar Cire</p>
+                                <p class="font-mono text-[11px] text-inkMuted mb-4 bg-white px-2.5 py-1 rounded-md border border-borderLine">
+                                    hepsi/profilfotoğrafı.jpeg
+                                </p>
+                                <label for="folder-loader" class="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-terracotta text-white text-xs font-semibold hover:bg-terracottaDark transition-colors no-print">
+                                    <i data-lucide="image-plus" class="w-3.5 h-3.5"></i>
+                                    Fotoğrafı Yüklemek İçin Klasörü Seç
+                                </label>
+                            </div>
+
+                            <!-- Sağ Alt Köşe Rozeti -->
+                            <div class="absolute bottom-3 left-3 right-3 glass-header px-3.5 py-2.5 rounded-xl border border-ink/15 flex items-center justify-between">
+                                <div>
+                                    <p class="font-mono text-[10px] uppercase tracking-wider text-inkMuted">Düzce Üniversitesi</p>
+                                    <p class="text-xs font-bold text-ink">YBS Lisans (2023 – 2027)</p>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-lg bg-sage text-white font-mono text-[10px] font-semibold">
+                                    4. Sınıf
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Kart Altı Öne Çıkan Metrikler -->
+                        <div class="grid grid-cols-3 gap-2 pt-4 mt-4 border-t border-borderLine text-center">
+                            <div class="p-2 rounded-xl bg-paper">
+                                <p class="font-serif text-2xl text-terracotta leading-none">4+</p>
+                                <p class="font-mono text-[10px] text-inkMuted mt-1">Aktif Rol</p>
+                            </div>
+                            <div class="p-2 rounded-xl bg-paper">
+                                <p class="font-serif text-2xl text-sage leading-none">4</p>
+                                <p class="font-mono text-[10px] text-inkMuted mt-1">Zirve & Kamp</p>
+                            </div>
+                            <div class="p-2 rounded-xl bg-paper">
+                                <p class="font-serif text-2xl text-ink leading-none">3</p>
+                                <p class="font-mono text-[10px] text-inkMuted mt-1">Ürün & Analiz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+             BÖLÜM 2: DENEYİM, EĞİTİM & YETKİNLİKLER
+             ========================================================= -->
+        <section id="deneyim" data-section="deneyim" class="scroll-mt-28 pt-8 border-t border-ink/15">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-ink">Deneyim, Eğitim & Beceriler</h2>
+                </div>
+                <p class="text-sm text-inkMuted max-w-md">
+                    Topluluk liderliği, ulusal zirve koordinasyonu, e-ticaret içerik yönetimi ve akademik altyapının birleşimi.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Sol: İş & Organizasyon Deneyimi Zaman Çizelgesi (8 Kolon) -->
+                <div class="lg:col-span-8 space-y-5">
+                    <h3 class="font-mono text-xs uppercase tracking-wider text-inkMuted flex items-center gap-2 mb-2">
+                        <i data-lucide="briefcase" class="w-4 h-4 text-terracotta"></i>
+                        İş & Koordinasyon Deneyimi
+                    </h3>
+
+                    <!-- Deneyim 1 -->
+                    <article class="editorial-card bg-white rounded-2xl p-6 border-2 border-ink shadow-editorialSm relative">
+                        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-md bg-terracotta/10 text-terracotta font-mono text-[11px] font-semibold mb-1.5">
+                                    Oca 2026 – Mar 2026
+                                </span>
+                                <h4 class="text-lg sm:text-xl font-bold text-ink">Genel Koordinatör Yardımcılığı</h4>
+                                <p class="text-sm font-medium text-sage">10. Ulusal Yönetim Bilişim Sistemleri Öğrenci Zirvesi</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-paperDark border border-borderLine font-mono text-[11px] text-ink">
+                                Liderlik & UNIDES
+                            </span>
+                        </div>
+                        <p class="text-sm text-inkMuted leading-relaxed">
+                            Zirve organizasyon sürecinde genel koordinasyon ekibinde yer alarak etkinlik planlama, görev dağılımı, katılımcı organizasyonu ve oturum akışının düzenlenmesine destek oldum. Ayrıca Gençlik ve Spor Bakanlığı destekli <strong>UNIDES</strong> programı kapsamında başvuru, evrak ve katılımcı kayıt süreçlerinin yürütülmesinde aktif görev aldım.
+                        </p>
+                    </article>
+
+                    <!-- Deneyim 2 -->
+                    <article class="editorial-card bg-white rounded-2xl p-6 border border-ink/20 hover:border-ink">
+                        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-md bg-sageLight text-sage font-mono text-[11px] font-semibold mb-1.5">
+                                    May 2025 – Haz 2026
+                                </span>
+                                <h4 class="text-lg sm:text-xl font-bold text-ink">Sosyal Medya Başkanlığı</h4>
+                                <p class="text-sm font-medium text-sage">Düzce Üniversitesi YBS Topluluğu</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-paperDark border border-borderLine font-mono text-[11px] text-ink">
+                                Dijital İletişim & Tasarım
+                            </span>
+                        </div>
+                        <p class="text-sm text-inkMuted leading-relaxed">
+                            Topluluğun sosyal medya hesaplarının içerik planlaması, gönderi tasarımı ve düzenli paylaşım süreçlerinin yönetiminde aktif rol aldım. Instagram ve diğer platformlarda içerik üretimi, görsel tasarım (<strong>Canva / Adobe Illustrator</strong>) ve etkileşim artırmaya yönelik çalışmalar gerçekleştirdim. Topluluk etkinliklerinin duyurulması ve dijital görünürlüğünün artırılması süreçlerini yönettim.
+                        </p>
+                    </article>
+
+                    <!-- Deneyim 3 -->
+                    <article class="editorial-card bg-white rounded-2xl p-6 border border-ink/20 hover:border-ink">
+                        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-md bg-paperDark text-inkMuted font-mono text-[11px] font-semibold mb-1.5">
+                                    Mar 2025 – Haz 2025
+                                </span>
+                                <h4 class="text-lg sm:text-xl font-bold text-ink">Öğrenci Çalışanı (İŞKUR Gençlik Programı)</h4>
+                                <p class="text-sm font-medium text-sage">Düzce Üniversitesi İşletme Fakültesi</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-paperDark border border-borderLine font-mono text-[11px] text-ink">
+                                Operasyon & Ofis Süreçleri
+                            </span>
+                        </div>
+                        <p class="text-sm text-inkMuted leading-relaxed">
+                            İŞKUR Gençlik Programı kapsamında İşletme Fakültesinde öğrenci çalışan olarak görev aldım. İdari işlere destek vererek evrak düzenleme ve ofis süreçlerinin yürütülmesine katkı sağladım; iletişim, ekip çalışması ve organizasyon becerilerimi pekiştirdim.
+                        </p>
+                    </article>
+
+                    <!-- Deneyim 4 -->
+                    <article class="editorial-card bg-white rounded-2xl p-6 border border-ink/20 hover:border-ink">
+                        <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 rounded-md bg-paperDark text-inkMuted font-mono text-[11px] font-semibold mb-1.5">
+                                    Haz 2024 – Ara 2024
+                                </span>
+                                <h4 class="text-lg sm:text-xl font-bold text-ink">Freelance Etsy Mağaza Yöneticisi</h4>
+                                <p class="text-sm font-medium text-sage">E-Ticaret & Dijital Ürün Yönetimi</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-paperDark border border-borderLine font-mono text-[11px] text-ink">
+                                E-Ticaret
+                            </span>
+                        </div>
+                        <p class="text-sm text-inkMuted leading-relaxed">
+                            Freelance olarak yürüttüğüm Etsy mağaza yöneticiliği sürecinde mağaza içeriklerini düzenli olarak güncelledim, ürün listeleme ve mağaza yönetimi süreçlerini takip ettim. Ürünlerin tasarım ve hazırlık aşamalarında aktif rol alarak ağırlıklı olarak <strong>Adobe Illustrator</strong>, gerektiğinde ise <strong>Adobe Photoshop</strong> kullandım.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Sağ: Eğitim Kartı & Yetkinlik Matrisi (4 Kolon) -->
+                <div class="lg:col-span-4 space-y-6">
+                    
+                    <!-- Eğitim Kartı -->
+                    <div class="bg-ink text-paper rounded-2xl p-6 border-2 border-ink shadow-editorialTerracotta">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-serif text-2xl sm:text-3xl text-white leading-tight">Düzce Üniversitesi</h4>
+                            <i data-lucide="award" class="w-5 h-5 text-terracotta shrink-0"></i>
+                        </div>
+                        <p class="text-sm font-medium text-paper/90 mt-1">Yönetim Bilişim Sistemleri (Lisans)</p>
+                        <div class="mt-4 pt-4 border-t border-paper/15 flex items-center justify-between font-mono text-xs text-paper/75">
+                            <span>Eyl 2023 – Ağu 2027</span>
+                            <span class="px-2 py-0.5 rounded bg-terracotta text-white">4. Sınıf</span>
+                        </div>
+                    </div>
+
+                    <!-- Beceriler & Araç Seti -->
+                    <div class="bg-white rounded-2xl p-6 border border-ink/20 space-y-5">
+                        <h3 class="font-mono text-xs uppercase tracking-wider text-ink flex items-center gap-2">
+                            <i data-lucide="layers" class="w-4 h-4 text-sage"></i>
+                            Beceriler & Yetkinlikler
+                        </h3>
+
+                        <!-- Grup 1: Analiz & Yönetim -->
+                        <div>
+                            <p class="font-mono text-[11px] text-inkMuted mb-2">İş Analizi & Dijital Yönetim</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-lg bg-sageLight text-sage text-xs font-medium">İş Analizi & Süreç Geliştirme</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sageLight text-sage text-xs font-medium">Sosyal Medya Yönetimi</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sageLight text-sage text-xs font-medium">İçerik Planlama</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sageLight text-sage text-xs font-medium">Etkinlik Koordinasyonu</span>
+                            </div>
+                        </div>
+
+                        <!-- Grup 2: Tasarım & Yazılım -->
+                        <div>
+                            <p class="font-mono text-[11px] text-inkMuted mb-2">Tasarım & Teknoloji</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-lg bg-paper border border-borderLine text-ink text-xs font-medium">Adobe Illustrator</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-paper border border-borderLine text-ink text-xs font-medium">Adobe Photoshop</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-paper border border-borderLine text-ink text-xs font-medium">Canva</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-paper border border-borderLine text-ink text-xs font-medium">HTML / CSS / JS (Temel)</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-paper border border-borderLine text-ink text-xs font-medium">C# (Temel)</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-paper border border-borderLine text-ink text-xs font-medium">MS Office (Word, Excel, PPT)</span>
+                            </div>
+                        </div>
+
+                        <!-- Grup 3: Kişisel Yetkinlikler -->
+                        <div>
+                            <p class="font-mono text-[11px] text-inkMuted mb-2">Profesyonel Yetkinlikler</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-lg bg-terracotta/10 text-terracotta text-xs font-medium">Analitik Düşünme</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-terracotta/10 text-terracotta text-xs font-medium">Ekip Çalışması</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-terracotta/10 text-terracotta text-xs font-medium">İletişim</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-terracotta/10 text-terracotta text-xs font-medium">Zaman Yönetimi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             BÖLÜM 3: ETKİNLİKLER & ZİRVE GALERİSİ (4 KLASÖR YAPISI)
+             ========================================================= -->
+        <section id="etkinlikler" data-section="etkinlikler" class="scroll-mt-28 pt-8 border-t border-ink/15">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+                <div>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-ink">Etkinlikler & Organizasyonlar</h2>
+                </div>
+
+                <!-- Etkinlik Kategori Filtre Butonları -->
+                <div class="flex flex-wrap gap-2 no-print" id="event-filters">
+                    <button onclick="filterEvents('all')" data-filter="all" class="event-filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-ink text-paper border border-ink transition-all">
+                        Tümü (22 Fotoğraf)
+                    </button>
+                    <button onclick="filterEvents('ybs10')" data-filter="ybs10" class="event-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-medium bg-white text-ink border border-borderLine hover:border-ink transition-all">
+                        10. Ulusal YBS Zirvesi (8)
+                    </button>
+                    <button onclick="filterEvents('girisimcilik')" data-filter="girisimcilik" class="event-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-medium bg-white text-ink border border-borderLine hover:border-ink transition-all">
+                        Girişimcilik & Kariyer (4)
+                    </button>
+                    <button onclick="filterEvents('turkcell')" data-filter="turkcell" class="event-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-medium bg-white text-ink border border-borderLine hover:border-ink transition-all">
+                        Turkcell GSB Kamp+ (7)
+                    </button>
+                    <button onclick="filterEvents('yapayzeka')" data-filter="yapayzeka" class="event-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-medium bg-white text-ink border border-borderLine hover:border-ink transition-all">
+                        Yapay Zeka & Dijitalleşme (3)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Klasör Bağlantı Bilgi Şeridi -->
+            <div class="mb-8 p-4 rounded-2xl bg-white/80 border border-borderLine flex flex-col sm:flex-row sm:items-center justify-between gap-3 no-print">
+                <div class="flex items-start sm:items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0">
+                        <i data-lucide="camera" class="w-4 h-4"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-inkMuted">
+                        Aşağıdaki galeri kartları <code class="font-mono text-xs bg-paperDark px-1.5 py-0.5 rounded text-ink">hepsi/etkinlikler/...</code> klasör yapınızdaki dosya isimleriyle birebir eşleşir. Fotoğraflara tıklayarak tam ekran inceleyebilirsiniz.
+                    </p>
+                </div>
+                <label for="folder-loader" class="cursor-pointer shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink text-paper text-xs font-mono hover:bg-terracotta transition-colors">
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    Klasörü Seç & Görselleri Aç
+                </label>
+            </div>
+
+            <!-- Etkinlik Kartları & Galerileri Konteyneri (JS ile dinamik oluşturulur) -->
+            <div id="events-container" class="space-y-10"></div>
+        </section>
+
+        <!-- =========================================================
+             BÖLÜM 4: PROJELER
+             ========================================================= -->
+        <section id="projeler" data-section="projeler" class="scroll-mt-28 pt-8 border-t border-ink/15">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-ink">Projeler</h2>
+                </div>
+                <p class="text-sm text-inkMuted max-w-md">
+                    Sistem analizi, kullanıcı deneyimi (UX) araştırması, süreç modelleme ve mobil uygulama geliştirme çalışmaları.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Proje 1: PickUp -->
+                <article class="editorial-card bg-white rounded-3xl p-6 sm:p-7 border-2 border-ink shadow-editorial flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-terracotta text-white font-mono text-[11px] font-semibold">
+                                Sistem Analizi & Ürün Kurgusu
+                            </span>
+                            <i data-lucide="package-check" class="w-5 h-5 text-ink"></i>
+                        </div>
+
+                        <h3 class="font-serif text-2xl sm:text-3xl text-ink leading-snug mb-2">
+                            PickUp — Yurt İçi Eşler Arası (P2P) Kargo İade & Teslimat
+                        </h3>
+                        
+                        <p class="font-mono text-[11px] text-inkMuted mb-4 bg-paper px-2.5 py-1 rounded-lg border border-borderLine inline-block">
+                            Dosya: hepsi/projeler/PickUp (2).pdf
+                        </p>
+
+                        <p class="text-sm text-inkMuted leading-relaxed mb-5">
+                            E-ticaret iade süreçlerindeki kargo bekleme ve şube yoğunluğu problemlerine çözüm üreten, kullanıcıları doğrulanmış yerel taşıyıcılarla buluşturan eşler arası (P2P) lojistik ve teslimat platformu kurgusu.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-ink/85 mb-6 border-t border-borderLine pt-4">
+                            <li class="flex items-start gap-2">
+                                <span class="text-terracotta font-bold">•</span>
+                                <span>Gönderici & Taşıyıcı çift taraflı kullanıcı akışı ve doğrulama modeli</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-terracotta font-bold">•</span>
+                                <span>Sistem gereksinim analizi, iş kuralları ve gelir modeli tasarımı</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-terracotta font-bold">•</span>
+                                <span>İade kodu entegrasyonu ve güvenli teslimat onay mekanizması</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-borderLine flex items-center justify-between gap-2 no-print">
+                        <a id="pdf-pickup-link" href="hepsi/projeler/PickUp (2).pdf" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-ink text-paper text-xs font-mono font-medium hover:bg-terracotta transition-colors">
+                            <i data-lucide="file-text" class="w-4 h-4"></i>
+                            Proje Sunumunu Aç (PDF)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Proje 2: Dolap Uygulaması İncelemesi -->
+                <article class="editorial-card bg-white rounded-3xl p-6 sm:p-7 border-2 border-ink shadow-editorial flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-sage text-white font-mono text-[11px] font-semibold">
+                                Ürün & Süreç Analizi
+                            </span>
+                            <i data-lucide="search-check" class="w-5 h-5 text-ink"></i>
+                        </div>
+
+                        <h3 class="font-serif text-2xl sm:text-3xl text-ink leading-snug mb-2">
+                            Dolap Uygulaması — UX, İş Modeli & Süreç İncelemesi
+                        </h3>
+                        
+                        <p class="font-mono text-[11px] text-inkMuted mb-4 bg-paper px-2.5 py-1 rounded-lg border border-borderLine inline-block">
+                            Dosya: hepsi/projeler/Dolap Uygulaması İncelemesi.pdf
+                        </p>
+
+                        <p class="text-sm text-inkMuted leading-relaxed mb-5">
+                            Türkiye'nin önde gelen ikinci el moda ve yaşam platformu Dolap'ın uçtan uca ürün mimarisi, alıcı-satıcı güven döngüsü, komisyon yapısı ve kullanıcı deneyimi darboğazlarının analitik incelenmesi.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-ink/85 mb-6 border-t border-borderLine pt-4">
+                            <li class="flex items-start gap-2">
+                                <span class="text-sage font-bold">•</span>
+                                <span>İlan oluşturma, teklif verme ve kargo süreçlerinin BPMN/akış analizi</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-sage font-bold">•</span>
+                                <span>Kullanıcı yolculuğu (User Journey) ağrı noktaları ve UX iyileştirme önerileri</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-sage font-bold">•</span>
+                                <span>Platform değer önerisi ve rekabet avantajı değerlendirmesi</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-borderLine flex items-center justify-between gap-2 no-print">
+                        <a id="pdf-dolap-link" href="hepsi/projeler/Dolap Uygulaması İncelemesi.pdf" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-ink text-paper text-xs font-mono font-medium hover:bg-sage transition-colors">
+                            <i data-lucide="file-text" class="w-4 h-4"></i>
+                            İnceleme Raporunu Aç (PDF)
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Proje 3: HavaDurumu Android Uygulaması -->
+                <article class="editorial-card bg-white rounded-3xl p-6 sm:p-7 border-2 border-ink shadow-editorial flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-paperDark text-ink border border-ink/20 font-mono text-[11px] font-semibold">
+                                Mobil Uygulama Geliştirme
+                            </span>
+                            <i data-lucide="smartphone" class="w-5 h-5 text-ink"></i>
+                        </div>
+
+                        <h3 class="font-serif text-2xl sm:text-3xl text-ink leading-snug mb-2">
+                            HavaDurumu — Android Mobil Uygulaması
+                        </h3>
+                        
+                        <p class="font-mono text-[11px] text-inkMuted mb-4 bg-paper px-2.5 py-1 rounded-lg border border-borderLine inline-block">
+                            Teknoloji: Kotlin • Android Studio • REST API
+                        </p>
+
+                        <p class="text-sm text-inkMuted leading-relaxed mb-5">
+                            Kullanıcıların anlık ve haftalık hava durumu verilerine konum tabanlı ve şehir aramalı olarak hızlıca ulaşabilmesini sağlayan, sade arayüzlü Android mobil uygulaması.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-ink/85 mb-6 border-t border-borderLine pt-4">
+                            <li class="flex items-start gap-2">
+                                <span class="text-ink font-bold">•</span>
+                                <span>Anlık sıcaklık, nem, rüzgar ve çok günlük tahmin kartları</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-ink font-bold">•</span>
+                                <span>Harici hava durumu API servislerinden asenkron JSON veri çekimi</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-ink font-bold">•</span>
+                                <span>Temiz kullanıcı arayüzü (UI) ve duyarlı ekran yerleşimi</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-borderLine flex items-center justify-between gap-2">
+                        <span class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-paperDark text-ink border border-borderLine text-xs font-mono">
+                            <i data-lucide="code-2" class="w-4 h-4 text-terracotta"></i>
+                            Akademik Yazılım Projesi
+                        </span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+             BÖLÜM 5: İLETİŞİM
+             ========================================================= -->
+        <section id="iletisim" data-section="iletisim" class="scroll-mt-28 pt-8 border-t border-ink/15">
+            <div class="bg-ink text-paper rounded-3xl p-8 sm:p-10 border-2 border-ink shadow-editorialTerracotta relative overflow-hidden">
+                <!-- Dekoratif Arka Plan Çemberi -->
+                <div class="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-terracotta/15 pointer-events-none"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-5">
+                        <h2 class="font-serif text-4xl sm:text-5xl text-white leading-tight">
+                            İletişim
+                        </h2>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-3">
+                        <!-- E-posta Kopyala / Gönder -->
+                        <div class="p-4 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="w-10 h-10 rounded-xl bg-terracotta text-white flex items-center justify-center shrink-0">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-mono text-[10px] uppercase text-paper/60">E-Posta Adresi</p>
+                                    <a href="mailto:cireelifdidar@gmail.com" class="text-sm font-semibold text-white hover:underline truncate block">
+                                        cireelifdidar@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            <button onclick="copyText('cireelifdidar@gmail.com', this)" class="px-3 py-1.5 rounded-lg bg-white text-ink font-mono text-xs font-semibold hover:bg-terracotta hover:text-white transition-colors shrink-0 no-print">
+                                Kopyala
+                            </button>
+                        </div>
+
+                        <!-- Telefon -->
+                        <div class="p-4 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-sage text-white flex items-center justify-center shrink-0">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-mono text-[10px] uppercase text-paper/60">Telefon</p>
+                                    <a href="tel:+905079100657" class="text-sm font-semibold text-white hover:underline">
+                                        0507 910 06 57
+                                    </a>
+                                </div>
+                            </div>
+                            <button onclick="copyText('05079100657', this)" class="px-3 py-1.5 rounded-lg bg-white text-ink font-mono text-xs font-semibold hover:bg-terracotta hover:text-white transition-colors shrink-0 no-print">
+                                Kopyala
+                            </button>
+                        </div>
+
+                        <!-- Konum -->
+                        <div class="p-4 rounded-2xl bg-white/10 border border-white/15 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-white/15 text-white flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-mono text-[10px] uppercase text-paper/60">Konum</p>
+                                <p class="text-sm font-semibold text-white">İzmir / Buca • Düzce Üniversitesi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="border-t border-borderLine py-8 bg-paperDark/60 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-inkMuted">
+            <p>© 2026 Elif Didar Cire — Yönetim Bilişim Sistemleri Portfolyo & CV</p>
+            <div class="flex items-center gap-4">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-terracotta transition-colors flex items-center gap-1">
+                    Yukarı Dön <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tam Ekran Fotoğraf Önizleme Modalı (Lightbox) -->
+    <div id="lightbox-modal" class="hidden fixed inset-0 z-[100] bg-ink/95 backdrop-blur-md flex items-center justify-center p-4 no-print" onclick="closeLightbox(event)">
+        <div class="relative max-w-5xl w-full flex flex-col items-center" onclick="event.stopPropagation()">
+            <!-- Üst Bar -->
+            <div class="w-full flex items-center justify-between text-paper mb-3 px-1">
+                <div>
+                    <p id="lightbox-title" class="font-serif text-2xl text-white"></p>
+                    <p id="lightbox-caption" class="font-mono text-xs text-paper/70"></p>
+                </div>
+                <button onclick="closeLightbox()" class="p-2.5 rounded-xl bg-white/10 hover:bg-terracotta text-white transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Görsel Alanı -->
+            <div class="relative w-full bg-black/40 rounded-2xl overflow-hidden border border-white/15 flex items-center justify-center min-h-[300px] max-h-[75vh]">
+                <img id="lightbox-img" src="" alt="Etkinlik Fotoğrafı" class="max-h-[75vh] w-auto object-contain">
+                
+                <!-- Önceki / Sonraki Butonları -->
+                <button onclick="stepLightbox(-1)" class="absolute left-3 p-3 rounded-full bg-ink/80 text-white border border-white/20 hover:bg-terracotta transition-colors">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button onclick="stepLightbox(1)" class="absolute right-3 p-3 rounded-full bg-ink/80 text-white border border-white/20 hover:bg-terracotta transition-colors">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. ETKİNLİK VERİLERİ (ZIP İÇİNDEKİ 4 KLASÖR & 22 DOSYA ADINA BİREBİR UYUMLU)
+        // =========================================================================
+        const EVENTS_DATA = [
+            {
+                id: 'ybs10',
+                badge: 'Genel Koordinatör Yardımcılığı & UNIDES',
+                date: 'Oca 2026 – Mar 2026',
+                title: '10. Ulusal Yönetim Bilişim Sistemleri Öğrenci Zirvesi',
+                location: 'Düzce Üniversitesi • Ulusal Zirve',
+                description: 'Genel koordinasyon ekibinde etkinlik planlama, görev dağılımı, katılımcı organizasyonu ve oturum akışını yönettim. Gençlik ve Spor Bakanlığı destekli UNIDES programı kapsamında başvuru, evrak ve katılımcı kayıt süreçlerini yürüttüm.',
+                accent: 'terracotta',
+                photos: Array.from({ length: 8 }, (_, i) => ({
+                    path: `hepsi/etkinlikler/10.ulusalyönetimbilişimsistemleriöğrencizirvesi/10.ulusalyönetimbilişimsistemleriöğrencizirvesi${i + 1}.jpeg`,
+                    filename: `10.ulusalyönetimbilişimsistemleriöğrencizirvesi${i + 1}.jpeg`,
+                    label: `10. Ulusal YBS Öğrenci Zirvesi — Kare #${i + 1}`
+                }))
+            },
+            {
+                id: 'girisimcilik',
+                badge: 'Topluluk Yönetimi & Görsel İletişim',
+                date: '2025 – 2026',
+                title: 'Girişimcilik ve Kariyer Zirvesi',
+                location: 'Düzce Üniversitesi YBS Topluluğu',
+                description: 'Düzce Üniversitesi YBS Topluluğu Sosyal Medya Başkanlığı kapsamında zirvenin dijital duyuru kampanyası, görsel kimlik tasarımları ve saha iletişim süreçlerinde aktif rol aldım.',
+                accent: 'sage',
+                photos: Array.from({ length: 4 }, (_, i) => ({
+                    path: `hepsi/etkinlikler/girişimcilikvekariyerzirvesi/girişimcilikvekariyerzirvesi${i + 1}.jpeg`,
+                    filename: `girişimcilikvekariyerzirvesi${i + 1}.jpeg`,
+                    label: `Girişimcilik ve Kariyer Zirvesi — Kare #${i + 1}`
+                }))
+            },
+            {
+                id: 'turkcell',
+                badge: 'Teknoloji & Kariyer Gelişim Kampı',
+                date: '2025',
+                title: 'Turkcell GSB Kamp+',
+                location: 'Turkcell & Gençlik ve Spor Bakanlığı',
+                description: 'Dijital yetkinlikler, teknoloji trendleri, kariyer planlama ve ekip çalışması odaklı yoğun gelişim kampında sektör profesyonelleriyle atölye ve vaka çalışmalarına katıldım.',
+                accent: 'ink',
+                photos: Array.from({ length: 7 }, (_, i) => ({
+                    path: `hepsi/etkinlikler/turkcellgsbkamp+/turkcellgsbkamp+${i + 1}.jpeg`,
+                    filename: `turkcellgsbkamp+${i + 1}.jpeg`,
+                    label: `Turkcell GSB Kamp+ — Kare #${i + 1}`
+                }))
+            },
+            {
+                id: 'yapayzeka',
+                badge: 'Yapay Zeka & Dijital Dönüşüm',
+                date: '2025',
+                title: 'Yapay Zeka ve Dijitalleşme Zirvesi',
+                location: 'Teknoloji & İnovasyon Oturumları',
+                description: 'İş süreçlerinde yapay zeka uygulamaları, veri analitiği ve kurumsal dijital dönüşüm vizyonunun ele alındığı zirve oturumlarına katılım ve topluluk temsili.',
+                accent: 'terracotta',
+                photos: Array.from({ length: 3 }, (_, i) => ({
+                    path: `hepsi/etkinlikler/yapayzekavedijitalleşmezirvesi/yapayzekavedijitalleşmezirvesi${i + 1}.jpeg`,
+                    filename: `yapayzekavedijitalleşmezirvesi${i + 1}.jpeg`,
+                    label: `Yapay Zeka ve Dijitalleşme Zirvesi — Kare #${i + 1}`
+                }))
+            }
+        ];
+
+        // Global Harita: Dosya Adı -> Blob URL (Kullanıcı yerel klasörü seçtiğinde dolar)
+        const uploadedFileMap = new Map();
+        let currentLightboxList = [];
+        let currentLightboxIndex = 0;
+
+        // =========================================================================
+        // 2. ETKİNLİK KARTLARINI VE GALERİLERİ OLUŞTURMA
+        // =========================================================================
+        function renderEvents(filter = 'all') {
+            const container = document.getElementById('events-container');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? EVENTS_DATA 
+                : EVENTS_DATA.filter(ev => ev.id === filter);
+
+            filtered.forEach(ev => {
+                const badgeStyle = ev.accent === 'terracotta' 
+                    ? 'bg-terracotta text-white' 
+                    : ev.accent === 'sage' 
+                        ? 'bg-sage text-white' 
+                        : 'bg-ink text-paper';
+
+                const card = document.createElement('article');
+                card.className = 'bg-white rounded-3xl p-6 sm:p-8 border-2 border-ink shadow-editorialSm space-y-6';
+
+                // Kart Üst Bilgisi
+                card.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-borderLine pb-5">
+                        <div class="space-y-2 max-w-3xl">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full ${badgeStyle} font-mono text-[11px] font-semibold">
+                                    ${ev.badge}
+                                </span>
+                                <span class="font-mono text-xs text-inkMuted">${ev.date} • ${ev.location}</span>
+                            </div>
+                            <h3 class="font-serif text-3xl sm:text-4xl text-ink">${ev.title}</h3>
+                            <p class="text-sm text-inkMuted leading-relaxed">${ev.description}</p>
+                        </div>
+                        <div class="shrink-0 flex items-center gap-2 font-mono text-xs bg-paper px-3 py-2 rounded-xl border border-borderLine">
+                            <i data-lucide="images" class="w-4 h-4 text-terracotta"></i>
+                            <span>${ev.photos.length} Fotoğraf</span>
+                        </div>
+                    </div>
+
+                    <!-- Fotoğraf Izgarası -->
+                    <div class="gallery-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+                        ${ev.photos.map((photo, idx) => {
+                            const resolvedSrc = uploadedFileMap.get(photo.filename.toLowerCase()) || photo.path;
+                            return `
+                                <div onclick="openLightbox('${ev.id}', ${idx})" class="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-paperDark border border-borderLine cursor-pointer hover:border-ink transition-all">
+                                    <img 
+                                        src="${resolvedSrc}" 
+                                        data-filename="${photo.filename}"
+                                        data-local-path="${photo.path}"
+                                        alt="${photo.label}" 
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                        onerror="handleImageFallback(this, 'gallery')"
+                                    >
+                                    <!-- Görsel Bulunamazsa Editorial Slot -->
+                                    <div class="gallery-fallback hidden absolute inset-0 p-3 flex flex-col items-center justify-center text-center bg-paper">
+                                        <i data-lucide="image" class="w-5 h-5 text-inkMuted/60 mb-1.5"></i>
+                                        <span class="font-mono text-[10px] text-ink font-medium leading-tight break-all line-clamp-2">${photo.filename}</span>
+                                        <span class="font-mono text-[9px] text-terracotta mt-1">Klasörden Bekleniyor</span>
+                                    </div>
+                                    <!-- Hover Büyütme İkonu -->
+                                    <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/30 transition-colors flex items-end justify-between p-2.5 opacity-0 group-hover:opacity-100">
+                                        <span class="font-mono text-[10px] text-white bg-ink/80 px-2 py-0.5 rounded">#${idx + 1}</span>
+                                        <span class="w-7 h-7 rounded-lg bg-white text-ink flex items-center justify-center shadow">
+                                            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Görsel Yüklenemezse Şık Yer Tutucu Göster
+        function handleImageFallback(imgEl, type) {
+            imgEl.classList.add('hidden');
+            if (type === 'profile') {
+                const ph = document.getElementById('profile-placeholder');
+                if (ph) ph.classList.remove('hidden');
+            } else if (type === 'gallery') {
+                const fallback = imgEl.nextElementSibling;
+                if (fallback) fallback.classList.remove('hidden');
+            }
+        }
+
+        // =========================================================================
+        // 3. YEREL KLASÖR SEÇİCİ ('hepsi/' KLASÖRÜNÜ CANLI EŞLEŞTİRME)
+        // =========================================================================
+        function handleFolderSelect(event) {
+            const files = Array.from(event.target.files || []);
+            if (!files.length) return;
+
+            let imageCount = 0;
+            let pdfCount = 0;
+
+            files.forEach(file => {
+                const lowerName = file.name.toLowerCase();
+                const blobUrl = URL.createObjectURL(file);
+                uploadedFileMap.set(lowerName, blobUrl);
+
+                if (file.type.startsWith('image/') || lowerName.endsWith('.jpeg') || lowerName.endsWith('.jpg') || lowerName.endsWith('.png')) {
+                    imageCount++;
+                } else if (lowerName.endsWith('.pdf')) {
+                    pdfCount++;
+                }
+            });
+
+            // 1. Profil Fotoğrafını Güncelle
+            const profileImg = document.getElementById('profile-photo-img');
+            const profilePlaceholder = document.getElementById('profile-placeholder');
+            const profileKey = ['profilfotoğrafı.jpeg', 'profilfotografi.jpeg', 'profilfotoğrafı.jpg'].find(k => uploadedFileMap.has(k));
+            
+            if (profileKey && profileImg) {
+                profileImg.src = uploadedFileMap.get(profileKey);
+                profileImg.classList.remove('hidden');
+                if (profilePlaceholder) profilePlaceholder.classList.add('hidden');
+            }
+
+            // 2. Proje PDF Bağlantılarını Güncelle
+            const pickupPdf = uploadedFileMap.get('pickup (2).pdf') || uploadedFileMap.get('pickup.pdf');
+            if (pickupPdf) {
+                const link = document.getElementById('pdf-pickup-link');
+                if (link) link.href = pickupPdf;
+            }
+
+            const dolapPdf = uploadedFileMap.get('dolap uygulaması incelemesi.pdf');
+            if (dolapPdf) {
+                const link = document.getElementById('pdf-dolap-link');
+                if (link) link.href = dolapPdf;
+            }
+
+            // 3. Aktif Etkinlik Galerisini Yeniden Çiz
+            const activeFilterBtn = document.querySelector('.event-filter-btn.active');
+            const currentFilter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+            renderEvents(currentFilter);
+
+            // 4. Kullanıcıya Bildirim Göster
+            const banner = document.getElementById('folder-status-banner');
+            const desc = document.getElementById('folder-status-desc');
+            const btnText = document.getElementById('folder-btn-text');
+            
+            if (btnText) btnText.textContent = 'Klasör Bağlandı ✓';
+            if (desc) desc.textContent = `${imageCount} fotoğraf ve ${pdfCount} PDF dosyası canlı eşleştirildi.`;
+            if (banner) banner.classList.remove('hidden');
+        }
+
+        // =========================================================================
+        // 4. SEKME NAVİGASYONU & BÖLÜM FİLTRELEME
+        // =========================================================================
+        function navigateTab(tabName) {
+            setActiveTab(tabName);
+
+            const sections = document.querySelectorAll('main > section[data-section]');
+            if (tabName === 'all') {
+                sections.forEach(sec => sec.classList.remove('hidden'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                sections.forEach(sec => {
+                    if (sec.dataset.section === tabName) {
+                        sec.classList.remove('hidden');
+                    } else {
+                        sec.classList.add('hidden');
+                    }
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Mobil menüyü kapat
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        function setActiveTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.classList.add('active');
+                    btn.classList.remove('text-inkMuted');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('text-inkMuted');
+                }
+            });
+        }
+
+        // Etkinlik Kategori Filtresi
+        function filterEvents(category) {
+            document.querySelectorAll('.event-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('active', 'bg-ink', 'text-paper', 'border-ink');
+                    btn.classList.remove('bg-white', 'text-ink', 'border-borderLine');
+                } else {
+                    btn.classList.remove('active', 'bg-ink', 'text-paper', 'border-ink');
+                    btn.classList.add('bg-white', 'text-ink', 'border-borderLine');
+                }
+            });
+            renderEvents(category);
+        }
+
+        // =========================================================================
+        // 5. LIGHTBOX (TAM EKRAN FOTOĞRAF İNCELEME)
+        // =========================================================================
+        function openLightbox(eventId, photoIndex) {
+            const eventObj = EVENTS_DATA.find(e => e.id === eventId);
+            if (!eventObj) return;
+
+            currentLightboxList = eventObj.photos.map(p => ({
+                ...p,
+                eventTitle: eventObj.title,
+                resolvedSrc: uploadedFileMap.get(p.filename.toLowerCase()) || p.path
+            }));
+            currentLightboxIndex = photoIndex;
+
+            updateLightboxUI();
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateLightboxUI() {
+            const item = currentLightboxList[currentLightboxIndex];
+            if (!item) return;
+
+            document.getElementById('lightbox-img').src = item.resolvedSrc;
+            document.getElementById('lightbox-title').textContent = item.eventTitle;
+            document.getElementById('lightbox-caption').textContent = `${item.label} • (${item.filename})`;
+        }
+
+        function stepLightbox(dir) {
+            if (!currentLightboxList.length) return;
+            currentLightboxIndex = (currentLightboxIndex + dir + currentLightboxList.length) % currentLightboxList.length;
+            updateLightboxUI();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Klavye kontrolleri (ESC, Sol/Sağ ok)
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') stepLightbox(1);
+            if (e.key === 'ArrowLeft') stepLightbox(-1);
+        });
+
+        // =========================================================================
+        // 6. PANOYA KOPYALAMA & MOBİL MENÜ
+        // =========================================================================
+        function copyText(text, btnEl) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const originalText = btnEl.textContent;
+            btnEl.textContent = 'Kopyalandı!';
+            setTimeout(() => {
+                btnEl.textContent = originalText;
+            }, 1800);
+        }
+
+        document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Sayfa Yüklendiğinde Başlat
+        window.addEventListener('DOMContentLoaded', () => {
+            renderEvents('all');
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
